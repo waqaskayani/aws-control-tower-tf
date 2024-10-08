@@ -1,15 +1,8 @@
 locals {
-
-  # Enter each accounts name and root email
-  audit_account_name       = ""
-  audit_account_email      = ""
-  log_archive_account_name = ""
-  log_archive_account_email = ""
-
-  # Create corresponding mapping of each account name to email
+  # Create corresponding mapping of each account name to email directly from variables
   accounts = {
-    (local.audit_account_name)       = local.audit_account_email
-    (local.log_archive_account_name) = local.log_archive_account_email
+    (var.audit_account_info["name"])       = var.audit_account_info["email"]
+    (var.log_archive_account_info["name"]) = var.log_archive_account_info["email"]
   }
 }
 
@@ -28,8 +21,8 @@ module "landing_zone_deployment" {
   governed_regions   = var.governed_regions
   security_ou_name   = var.security_ou_name
   sandbox_ou_name    = var.sandbox_ou_name
-  log_account_id     = module.landing_zone_base.account_ids[local.log_archive_account_name]
-  sec_account_id     = module.landing_zone_base.account_ids[local.audit_account_name]
+  log_account_id     = module.landing_zone_base.account_ids[var.log_archive_account_info["name"]]
+  sec_account_id     = module.landing_zone_base.account_ids[var.audit_account_info["name"]]
   log_retention_days = var.log_retention_days
 
   depends_on = [ 
