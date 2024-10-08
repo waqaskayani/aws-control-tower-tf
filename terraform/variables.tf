@@ -1,3 +1,15 @@
+####################
+## 00. Profile setup
+
+variable "aws_region" {
+  type = string
+  default = "us-east-1"
+}
+
+variable "aws_profile" {
+  type = string
+}
+
 #################################
 ## 01. Organization/LZ base setup
 
@@ -5,7 +17,6 @@
 
 variable "organization_root_id" {
   type = string
-  default = ""
 }
 
 variable "organization_trusted_role_name" {
@@ -23,12 +34,19 @@ variable "iam_user_access_to_billing" {
   default = "ALLOW"  
 }
 
+variable "audit_account_info" {
+  type = map(string)
+}
+
+variable "log_archive_account_info" {
+  type = map(string)
+}
+
 ##############################
 ## 02. Landing zone deployment
 
 variable "governed_regions" {
   type = list(string)
-  default = ["us-east-1"]
 }
 
 variable "security_ou_name" {

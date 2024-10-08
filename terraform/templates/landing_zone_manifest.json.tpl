@@ -12,10 +12,10 @@
          "accountId": "${log_account_id}",
          "configurations": {
              "loggingBucket": {
-                 "retentionDays": ${log_retention_days}
+                 "retentionDays": "${log_retention_days}"
              },
              "accessLoggingBucket": {
-                 "retentionDays": ${log_retention_days}
+                 "retentionDays": "${log_retention_days}"
              },
              "kmsKeyArn": "${kms_key_arn}"
          },
