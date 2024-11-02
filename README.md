@@ -24,8 +24,13 @@ Ensure to have the following:
     $ terraform apply -target=module.landing_zone_deployment
     ```
 - Review AWS Control Tower [console](https://us-east-1.console.aws.amazon.com/controltower/home) to view Control Tower and Landing Zone setup.
+- Register `Account Factory OU` within the Control Tower.
+
+### Known issues
+- There's a known issue with landing_zone_manifest Control tower. When making changes in the terraform code ensure to remove double quotes from `${log_retention_days}` defined in manifest json template file, and then apply. Afterwards, add the double quotes again, otherwise it will always show a change while planning.
 
 ### References
 - https://docs.aws.amazon.com/controltower/latest/userguide/walkthrough-api-setup.html
 - https://docs.aws.amazon.com/controltower/latest/userguide/lz-api-launch.html
 - https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/controltower_landing_zone
+- https://docs.aws.amazon.com/controltower/latest/userguide/table-of-baselines.html
