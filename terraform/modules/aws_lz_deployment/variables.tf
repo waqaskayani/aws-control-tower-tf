@@ -33,3 +33,18 @@ variable "aws_landing_zone_version" {
   type = string
   default = "3.3"
 }
+
+variable "aws_account_factory_ou_name" {
+  type = string
+  default = "LZ Account Factory OU"
+}
+
+variable "ct_baseline_control_id" {
+  type = string
+  default = "17BSJV3IGJ2QSGA2"
+}
+
+variable "ct_baseline_version" {
+  type = string
+  default = "4.0"
+}

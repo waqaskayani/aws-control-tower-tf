@@ -26,6 +26,13 @@ resource "aws_controltower_landing_zone" "lz" {
   ]
 }
 
+resource "aws_organizations_organizational_unit" "account_factory_ou" {
+  name      = var.aws_account_factory_ou_name
+  parent_id = data.aws_organizations_organizational_unit.ou_workload.id
+
+  depends_on = [ aws_controltower_landing_zone.lz ]
+}
+
 resource "aws_kms_key" "kms_key" {
   description             = "Symmetric encryption KMS key for Landing Zone resources"
   enable_key_rotation     = true
